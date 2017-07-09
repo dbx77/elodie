@@ -1,2 +1,8 @@
 [MapQuest]
 key=your-api-key-goes-here
+
+[Directory]
+location=%city, %state
+dbcomplex=%Y.%m.%d~%location
+year=%Y
+full_path=%year/%dbcomplex
