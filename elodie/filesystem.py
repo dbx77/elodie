@@ -253,6 +253,23 @@ class FileSystem(object):
                     )
                     path.append(parsed_folder_name)
                     break
+                elif part == 'dbcomplex':
+                    maskT,maskL = mask.split('~')
+                    tcomp = time.strftime(maskT, metadata['date_taken'])
+
+                    place_name = geolocation.place_name(
+                        metadata['latitude'],
+                        metadata['longitude']
+                    )
+
+                    location_parts = re.findall('(%[^%]+)', maskL)
+                    parsed_folder_name = self.parse_mask_for_location(
+                        maskL,
+                        location_parts,
+                        place_name,
+                    )
+                    path.append(tcomp + ' ' + parsed_folder_name)
+                    break
                 elif part in ('album'):
                     if metadata['album']:
                         path.append(metadata['album'])
